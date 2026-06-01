@@ -14,6 +14,9 @@ connectDB();
 
 const app = express();
 
+// Trust proxy for rate limiting behind load balancers (Render, etc.)
+app.set('trust proxy', 1);
+
 // Security middleware
 app.use(helmet());
 
