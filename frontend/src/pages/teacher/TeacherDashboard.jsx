@@ -56,7 +56,7 @@ const TeacherDashboard = () => {
       {/* Header */}
       <div className="dashboard-header">
         <div>
-          <h1 className="dashboard-title">Welcome, {user?.name} 👋</h1>
+          <h1 className="dashboard-title" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Welcome, {user?.name} 👋</h1>
           <p className="dashboard-subtitle">Manage your classes and attendance sessions</p>
         </div>
         <div className="dashboard-actions">
@@ -90,7 +90,7 @@ const TeacherDashboard = () => {
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></svg>
           </div>
           <div className="stat-info">
-            <span className="stat-value">{dashboard?.totalClasses || 0}</span>
+            <span className="stat-value" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{dashboard?.totalClasses || 0}</span>
             <span className="stat-label">Classes</span>
           </div>
         </div>
@@ -99,7 +99,7 @@ const TeacherDashboard = () => {
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
           </div>
           <div className="stat-info">
-            <span className="stat-value">{dashboard?.totalSessions || 0}</span>
+            <span className="stat-value" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{dashboard?.totalSessions || 0}</span>
             <span className="stat-label">Sessions</span>
           </div>
         </div>
@@ -108,7 +108,7 @@ const TeacherDashboard = () => {
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
           </div>
           <div className="stat-info">
-            <span className="stat-value">{dashboard?.totalStudents || 0}</span>
+            <span className="stat-value" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{dashboard?.totalStudents || 0}</span>
             <span className="stat-label">Students</span>
           </div>
         </div>
@@ -117,7 +117,7 @@ const TeacherDashboard = () => {
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
           </div>
           <div className="stat-info">
-            <span className="stat-value">{dashboard?.activeSession ? 'Live' : 'None'}</span>
+            <span className="stat-value" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{dashboard?.activeSession ? 'Live' : 'None'}</span>
             <span className="stat-label">Active Session</span>
           </div>
         </div>
@@ -165,7 +165,12 @@ const TeacherDashboard = () => {
       {/* Recent Sessions */}
       <div className="section">
         <div className="section-header">
-          <h2 className="section-title">Recent Sessions</h2>
+          <h2 className="section-title flex items-center gap-2">
+            {dashboard?.activeSession && (
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse inline-block" />
+            )}
+            Recent Sessions
+          </h2>
           <Link to="/teacher/reports" className="btn btn-ghost btn-sm">View All →</Link>
         </div>
         {dashboard?.recentSessions?.length > 0 ? (
@@ -176,10 +181,12 @@ const TeacherDashboard = () => {
           </div>
         ) : (
           <div className="empty-state">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.3">
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
+            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-2 text-gray-400">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
             <p>No sessions yet. Create your first attendance session!</p>
             <button className="btn btn-primary btn-sm" onClick={() => setShowCreateSession(true)}>
               Create Session

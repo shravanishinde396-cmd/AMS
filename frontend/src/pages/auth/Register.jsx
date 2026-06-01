@@ -72,6 +72,13 @@ const Register = () => {
 
   return (
     <div className="auth-page">
+      {/* Background dot grid pattern */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: -20,
+        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)',
+        backgroundSize: '32px 32px'
+      }} />
+
       <div className="auth-bg">
         <div className="auth-bg-shape auth-bg-shape-1"></div>
         <div className="auth-bg-shape auth-bg-shape-2"></div>
@@ -247,7 +254,7 @@ const Register = () => {
                 Creating account...
               </span>
             ) : (
-              'Create Account'
+              'Create Account →'
             )}
           </button>
         </form>

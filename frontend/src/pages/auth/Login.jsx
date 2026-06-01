@@ -43,6 +43,13 @@ const Login = () => {
 
   return (
     <div className="auth-page">
+      {/* Background dot grid pattern */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: -20,
+        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)',
+        backgroundSize: '32px 32px'
+      }} />
+
       <div className="auth-bg">
         <div className="auth-bg-shape auth-bg-shape-1"></div>
         <div className="auth-bg-shape auth-bg-shape-2"></div>
@@ -73,7 +80,7 @@ const Login = () => {
               <input
                 id="email"
                 type="email"
-                className="form-input"
+                className="form-input form-input-with-icon"
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -92,7 +99,7 @@ const Login = () => {
               <input
                 id="password"
                 type={showPassword ? 'text' : 'password'}
-                className="form-input"
+                className="form-input form-input-with-icon"
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -123,7 +130,7 @@ const Login = () => {
                 Signing in...
               </span>
             ) : (
-              'Sign In'
+              'Sign In →'
             )}
           </button>
         </form>
@@ -136,11 +143,17 @@ const Login = () => {
           <p className="auth-demo-title">Demo Credentials</p>
           <div className="auth-demo-grid">
             <button type="button" className="auth-demo-btn" onClick={() => { setEmail('teacher@demo.com'); setPassword('Teacher@123'); }}>
-              <span className="auth-demo-role">Teacher</span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span className="auth-demo-role">Teacher</span>
+              </span>
               <span className="auth-demo-email">teacher@demo.com</span>
             </button>
             <button type="button" className="auth-demo-btn" onClick={() => { setEmail('student1@demo.com'); setPassword('Student@123'); }}>
-              <span className="auth-demo-role">Student</span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+                <span className="auth-demo-role">Student</span>
+              </span>
               <span className="auth-demo-email">student1@demo.com</span>
             </button>
           </div>
