@@ -1,0 +1,635 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-gray-100 font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200 overflow-x-hidden;
+  }
+}
+
+/* Custom Utilities and Animations */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.02); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.active-pulse {
+  animation: pulse-soft 2s infinite ease-in-out;
+}
+
+.animate-spin-slow {
+  animation: spin 8s linear infinite;
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Buttons */
+.btn {
+  @apply inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-200 active:scale-[0.98] cursor-pointer gap-2 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-lg shadow-cyan-500/20 px-5 py-2.5;
+}
+
+.btn-secondary {
+  @apply bg-white/5 hover:bg-white/10 text-white border border-white/10 px-5 py-2.5;
+}
+
+.btn-danger {
+  @apply bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 px-5 py-2.5;
+}
+
+.btn-ghost {
+  @apply hover:bg-white/5 text-gray-300 px-4 py-2;
+}
+
+.btn-sm {
+  @apply px-3 py-1.5 text-xs rounded-lg;
+}
+
+.btn-lg {
+  @apply px-6 py-3.5 text-base rounded-2xl;
+}
+
+.btn-block {
+  @apply w-full;
+}
+
+.btn-loading {
+  @apply flex items-center justify-center gap-2;
+}
+
+.btn-spinner {
+  @apply w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin;
+}
+
+/* Navbar */
+.navbar {
+  @apply sticky top-0 z-40 bg-slate-950/70 backdrop-blur-md border-b border-white/5 w-full;
+}
+
+.navbar-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between;
+}
+
+.navbar-brand {
+  @apply flex items-center gap-2.5 text-white font-extrabold text-lg tracking-tight;
+}
+
+.navbar-logo {
+  @apply w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-md shadow-cyan-500/20;
+}
+
+.navbar-links {
+  @apply hidden md:flex items-center gap-6;
+}
+
+.nav-link {
+  @apply text-sm font-medium text-gray-400 hover:text-white transition-colors py-2;
+}
+
+.navbar-user {
+  @apply flex items-center gap-3 bg-white/5 pl-2.5 pr-3 py-1.5 rounded-xl border border-white/5;
+}
+
+.navbar-avatar {
+  @apply w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-xs font-bold text-white;
+}
+
+.navbar-user-info {
+  @apply flex flex-col text-left;
+}
+
+.navbar-user-name {
+  @apply text-xs font-bold text-white;
+}
+
+.navbar-user-role {
+  @apply text-[10px] text-gray-400 capitalize -mt-0.5;
+}
+
+.navbar-toggle {
+  @apply md:hidden p-2 text-gray-400 hover:text-white transition-colors cursor-pointer;
+}
+
+.navbar-mobile {
+  @apply md:hidden px-4 pt-2 pb-6 border-b border-white/5 bg-slate-950 flex flex-col gap-4;
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+.nav-link-mobile {
+  @apply text-sm font-medium text-gray-300 hover:text-white transition-colors block py-2 border-b border-white/5;
+}
+
+.navbar-mobile-user {
+  @apply flex items-center gap-3 bg-white/5 p-3 rounded-xl border border-white/5;
+}
+
+/* Authentication Page layout */
+.auth-page {
+  @apply min-h-[90vh] flex items-center justify-center relative py-12 px-4 sm:px-6 lg:px-8 overflow-hidden;
+}
+
+.auth-bg {
+  @apply absolute inset-0 -z-10 pointer-events-none;
+}
+
+.auth-bg-shape {
+  @apply absolute rounded-full blur-[120px] opacity-20;
+}
+
+.auth-bg-shape-1 {
+  @apply bg-cyan-500 w-[350px] h-[350px] -top-20 -left-20;
+}
+
+.auth-bg-shape-2 {
+  @apply bg-blue-600 w-[400px] h-[400px] -bottom-20 -right-20;
+}
+
+.auth-bg-shape-3 {
+  @apply bg-purple-600 w-[300px] h-[300px] top-1/3 left-1/3 blur-[150px];
+}
+
+.auth-card {
+  @apply glass-panel w-full max-w-md p-8 sm:p-10 rounded-[32px] border border-white/10 shadow-2xl;
+}
+
+.auth-card-wide {
+  @apply max-w-2xl;
+}
+
+.auth-header {
+  @apply text-center mb-8 flex flex-col items-center;
+}
+
+.auth-logo {
+  @apply w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-cyan-500/25 mb-4;
+}
+
+.auth-title {
+  @apply text-2xl font-extrabold text-white tracking-tight sm:text-3xl;
+}
+
+.auth-subtitle {
+  @apply text-sm text-gray-400 mt-2;
+}
+
+.auth-form {
+  @apply space-y-6 text-left;
+}
+
+.form-group {
+  @apply flex flex-col gap-1.5;
+}
+
+.form-row {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+}
+
+.form-label {
+  @apply text-xs font-bold text-gray-400 uppercase tracking-wider pl-1;
+}
+
+.input-wrapper {
+  @apply relative flex items-center;
+}
+
+.form-input {
+  @apply w-full pl-11 pr-4 py-3 bg-slate-950/60 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors text-sm;
+}
+
+.input-icon {
+  @apply absolute left-4 text-gray-500;
+}
+
+.input-toggle {
+  @apply absolute right-4 text-gray-400 hover:text-white transition-colors cursor-pointer;
+}
+
+.auth-footer {
+  @apply text-center mt-6 text-sm text-gray-400;
+}
+
+.auth-link {
+  @apply text-cyan-400 hover:underline font-semibold;
+}
+
+/* Role Toggle button in Registration */
+.role-toggle {
+  @apply grid grid-cols-2 gap-3 bg-slate-950/60 p-1.5 rounded-2xl border border-white/10;
+}
+
+.role-btn {
+  @apply py-3 rounded-xl font-bold text-sm text-gray-400 hover:text-white transition-all duration-200 flex items-center justify-center gap-2;
+}
+
+.role-btn-active {
+  @apply bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/10;
+}
+
+/* Demo Credentials block */
+.auth-demo {
+  @apply mt-8 pt-6 border-t border-white/5;
+}
+
+.auth-demo-title {
+  @apply text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 text-center;
+}
+
+.auth-demo-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-3;
+}
+
+.auth-demo-btn {
+  @apply text-left p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 transition-colors cursor-pointer;
+}
+
+.auth-demo-role {
+  @apply text-xs font-bold text-white block;
+}
+
+.auth-demo-email {
+  @apply text-[10px] text-gray-400 font-mono mt-0.5 block;
+}
+
+/* Teacher Dashboard */
+.dashboard-page {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8;
+}
+
+.dashboard-header {
+  @apply flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-white/5 pb-6;
+}
+
+.dashboard-title {
+  @apply text-3xl font-extrabold text-white tracking-tight;
+}
+
+.dashboard-subtitle {
+  @apply text-sm text-gray-400 mt-1;
+}
+
+.dashboard-actions {
+  @apply flex flex-wrap gap-3 w-full md:w-auto;
+}
+
+/* Stats Row */
+.stats-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6;
+}
+
+.stat-card {
+  @apply glass-panel p-6 rounded-2xl border border-white/10 flex items-center gap-4 bg-slate-900/40;
+}
+
+.stat-icon {
+  @apply w-12 h-12 rounded-xl flex items-center justify-center;
+}
+
+.stat-icon-blue {
+  @apply bg-blue-500/10 text-blue-400 border border-blue-500/20;
+}
+
+.stat-icon-green {
+  @apply bg-emerald-500/10 text-emerald-400 border border-emerald-500/20;
+}
+
+.stat-icon-purple {
+  @apply bg-purple-500/10 text-purple-400 border border-purple-500/20;
+}
+
+.stat-icon-active {
+  @apply bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 active-pulse;
+}
+
+.stat-icon-gray {
+  @apply bg-white/5 text-gray-500 border border-white/5;
+}
+
+.stat-info {
+  @apply flex flex-col text-left;
+}
+
+.stat-value {
+  @apply text-2xl font-black text-white;
+}
+
+.stat-label {
+  @apply text-xs text-gray-500 font-semibold uppercase tracking-wider mt-0.5;
+}
+
+/* Active Session Banner */
+.active-session-banner {
+  @apply relative glass-panel p-6 border border-white/10 rounded-2xl bg-cyan-950/20 flex flex-col md:flex-row items-center gap-4 overflow-hidden;
+}
+
+.active-session-pulse {
+  @apply absolute -left-10 w-24 h-24 bg-cyan-500 rounded-full blur-2xl opacity-10 animate-pulse;
+}
+
+.active-session-content {
+  @apply w-full flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 relative z-10;
+}
+
+.active-session-info {
+  @apply flex flex-col text-left;
+}
+
+.active-session-title {
+  @apply text-lg font-bold text-white;
+}
+
+.active-session-class {
+  @apply text-xs text-gray-400 mt-0.5;
+}
+
+.active-session-meta {
+  @apply flex items-center gap-3 mt-2 flex-wrap;
+}
+
+.active-session-count {
+  @apply text-xs text-cyan-400 font-medium;
+}
+
+.active-session-actions {
+  @apply flex gap-2 flex-wrap;
+}
+
+/* Sessions Grid & Empty States */
+.section {
+  @apply space-y-4 text-left;
+}
+
+.section-header {
+  @apply flex justify-between items-center;
+}
+
+.section-title {
+  @apply text-xl font-bold text-white tracking-tight;
+}
+
+.sessions-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.empty-state {
+  @apply p-12 text-center text-gray-400 glass-panel rounded-2xl border border-white/10 bg-slate-900/20 flex flex-col items-center justify-center gap-4;
+}
+
+/* Custom modal backdrop and overlays */
+.modal-backdrop, .modal-overlay {
+  @apply fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4;
+}
+
+.modal-content, .modal {
+  @apply glass-panel w-full max-w-md p-6 sm:p-8 rounded-[24px] border border-white/10 shadow-2xl relative text-left;
+  animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modal-lg {
+  @apply max-w-xl;
+}
+
+.modal-header {
+  @apply flex justify-between items-center border-b border-white/5 pb-4 mb-4;
+}
+
+.modal-title {
+  @apply text-lg font-bold text-white;
+}
+
+.modal-close {
+  @apply text-gray-500 hover:text-white text-2xl font-light cursor-pointer transition-colors focus:outline-none;
+}
+
+.modal-body {
+  @apply space-y-4 max-h-[65vh] overflow-y-auto pr-1;
+}
+
+.modal-footer {
+  @apply flex justify-end items-center gap-3 border-t border-white/5 pt-4 mt-6;
+}
+
+/* Stepper Component */
+.stepper {
+  @apply flex justify-between items-center bg-slate-950/40 p-3 rounded-2xl mb-6 border border-white/5;
+}
+
+.step {
+  @apply flex items-center gap-2 text-gray-500 font-medium transition-all;
+}
+
+.step-circle {
+  @apply w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-gray-400;
+}
+
+.step-label {
+  @apply text-xs hidden sm:inline;
+}
+
+.step-active {
+  @apply text-cyan-400;
+}
+
+.step-active .step-circle {
+  @apply bg-cyan-500/10 border-cyan-500/30 text-cyan-400;
+}
+
+.step-done {
+  @apply text-emerald-400;
+}
+
+.step-done .step-circle {
+  @apply bg-emerald-500/10 border-emerald-500/30 text-emerald-400;
+}
+
+/* Class Selection Grid */
+.class-select-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2;
+}
+
+.class-select-item {
+  @apply text-left p-4 border border-white/5 bg-white/5 hover:bg-white/10 rounded-xl cursor-pointer transition-all flex flex-col active:scale-[0.98];
+}
+
+.class-select-active {
+  @apply border-cyan-500/30 bg-cyan-500/5 shadow-md shadow-cyan-500/5;
+}
+
+.class-select-code {
+  @apply text-cyan-400 font-mono text-xs font-semibold;
+}
+
+.class-select-name {
+  @apply text-white font-bold text-sm mt-1;
+}
+
+.class-select-count {
+  @apply text-gray-500 text-xs mt-1;
+}
+
+/* Location Preview & Utilities */
+.location-preview {
+  @apply flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-3 text-emerald-400 text-xs font-semibold;
+}
+
+.divider-text {
+  @apply text-center text-xs text-gray-500 uppercase tracking-wider my-4 relative flex items-center justify-center gap-3;
+}
+
+.divider-text::before, .divider-text::after {
+  content: '';
+  @apply h-px bg-white/5 flex-grow;
+}
+
+/* Ranges */
+.form-range {
+  @apply w-full h-1.5 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-cyan-400;
+}
+
+.range-labels {
+  @apply flex justify-between text-[10px] text-gray-500 font-medium px-1 mt-1;
+}
+
+.form-hint {
+  @apply text-[10px] text-gray-400 mt-2 pl-1 leading-relaxed;
+}
+
+/* Session Summary Card */
+.session-summary {
+  @apply bg-slate-950/40 p-4 border border-white/5 rounded-xl space-y-2 mt-4 text-left;
+}
+
+.session-summary h4 {
+  @apply text-white text-xs font-bold uppercase tracking-wider mb-2.5 pb-2 border-b border-white/5;
+}
+
+.summary-row {
+  @apply flex justify-between text-xs;
+}
+
+.summary-row span:first-child {
+  @apply text-gray-400;
+}
+
+.summary-row span:last-child {
+  @apply text-white font-semibold;
+}
+
+/* Creation Success Screen */
+.success-icon-large {
+  @apply flex justify-center text-emerald-400 mb-4;
+}
+
+.session-link-label {
+  @apply text-xs text-gray-400 font-bold uppercase tracking-wider mb-2 text-center;
+}
+
+.session-link-box {
+  @apply flex items-center gap-2 bg-slate-950/60 border border-white/10 p-3 rounded-xl font-mono text-xs text-cyan-400 mb-6;
+}
+
+.session-link-text {
+  @apply flex-1 overflow-x-auto truncate pr-2 select-all text-left;
+}
+
+.qr-container {
+  @apply flex flex-col items-center justify-center p-4 bg-white rounded-xl mb-6 max-w-[210px] mx-auto;
+}
+
+.qr-label {
+  @apply text-[10px] text-gray-500 mt-2 font-bold uppercase tracking-wider;
+}
+
+/* Class Manager Lists */
+.class-list {
+  @apply space-y-2.5 text-left;
+}
+
+.class-list-item {
+  @apply flex justify-between items-center p-3 border border-white/5 bg-white/5 hover:bg-white/10 rounded-xl cursor-pointer transition-all active:scale-[0.99];
+}
+
+.class-list-code {
+  @apply text-cyan-400 font-mono text-xs font-semibold px-2 py-0.5 bg-cyan-500/10 border border-cyan-500/20 rounded-md;
+}
+
+.class-list-name {
+  @apply text-white font-bold text-sm ml-2;
+}
+
+.class-list-count {
+  @apply text-gray-400 text-xs;
+}
+
+.empty-state-small {
+  @apply py-6 text-center text-gray-500 text-sm bg-white/5 rounded-xl border border-dashed border-white/10;
+}
+
+/* Class Detail info & Students list */
+.class-detail-info {
+  @apply flex items-center gap-3 text-xs text-gray-400 border-b border-white/5 pb-4 mb-4 text-left;
+}
+
+.student-list {
+  @apply mt-6 space-y-2.5 text-left;
+}
+
+.student-list h4 {
+  @apply text-white font-bold text-xs uppercase tracking-wider mb-2 pl-1;
+}
+
+.student-list-item {
+  @apply flex justify-between items-center p-3 border border-white/5 bg-slate-950/20 rounded-xl;
+}
+
+.student-info {
+  @apply flex flex-col;
+}
+
+.student-name {
+  @apply text-sm text-white font-semibold;
+}
+
+.student-meta {
+  @apply text-[10px] text-gray-400 mt-0.5 font-mono;
+}
+
+.enroll-form {
+  @apply flex gap-2 mb-4;
+}
+
+.create-class-form {
+  @apply bg-slate-950/40 p-4 border border-white/5 rounded-xl space-y-3 mt-4 text-left;
+}
+
+.create-class-form h4 {
+  @apply text-white text-xs font-bold uppercase tracking-wider pb-2 border-b border-white/5;
+}
+
+.form-actions {
+  @apply flex justify-end gap-2 pt-2;
+}
+
+.badge {
+  @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-mono;
+}
+
