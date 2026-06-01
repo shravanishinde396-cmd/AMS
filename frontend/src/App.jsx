@@ -21,7 +21,7 @@ import AttendancePage from './pages/attendance/AttendancePage';
 // Layout Wrapper
 const AppLayout = ({ children }) => {
   return (
-    <div className="min-h-screen bg-[#020817] text-gray-100 flex flex-col font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[#0e1416] text-[#dee3e6] flex flex-col font-sans overflow-x-hidden">
       <Navbar />
       <main className="flex-grow">
         {children}

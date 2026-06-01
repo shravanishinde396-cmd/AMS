@@ -42,32 +42,78 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-page">
-      {/* Background dot grid pattern */}
-      <div style={{
-        position: 'absolute', inset: 0, zIndex: -20,
-        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)',
-        backgroundSize: '32px 32px'
-      }} />
-
-      <div className="auth-bg">
-        <div className="auth-bg-shape auth-bg-shape-1"></div>
-        <div className="auth-bg-shape auth-bg-shape-2"></div>
-        <div className="auth-bg-shape auth-bg-shape-3"></div>
+    <div className="min-h-[90vh] w-full flex flex-col lg:flex-row relative overflow-hidden">
+      {/* Left Panel: Visual/Marketing (Hidden on Mobile) */}
+      <div className="hidden lg:flex w-1/2 relative overflow-hidden bg-gradient-orbs flex-col justify-center px-16 border-r border-white/5 select-none">
+        <div className="relative z-10 max-w-lg">
+          <div className="mb-6 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#06b6d4] to-[#0053db] flex items-center justify-center text-white shadow-lg">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <span className="text-3xl font-bold bg-gradient-to-r from-[#4cd7f6] to-[#b4c5ff] bg-clip-text text-transparent tracking-tight">AttendX</span>
+          </div>
+          <h1 className="text-5xl font-bold text-[#dee3e6] mb-6 leading-tight">
+            Precision Presence. <br/> Verified Instantly.
+          </h1>
+          <p className="text-lg text-[#bcc9cd] mb-12">
+            The enterprise-grade attendance platform engineered for real-time accuracy and indisputable verification.
+          </p>
+          <ul className="space-y-6">
+            <li className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-[#4cd7f6] border border-white/5">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
+              </div>
+              <span className="text-[#dee3e6] font-medium">GPS-verified check-in</span>
+            </li>
+            <li className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-[#4cd7f6] border border-white/5">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
+              </div>
+              <span className="text-[#dee3e6] font-medium">Real-time sessions</span>
+            </li>
+            <li className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-[#4cd7f6] border border-white/5">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>
+              </div>
+              <span className="text-[#dee3e6] font-medium">Instant reports</span>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div className="auth-card">
-        <div className="auth-header">
-          <div className="auth-logo">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Right Panel: Login Form */}
+      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-6 relative min-h-[90vh]">
+        {/* Background dot grid pattern */}
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: -20,
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)',
+          backgroundSize: '32px 32px'
+        }} />
+
+        {/* Mobile Logo */}
+        <div className="lg:hidden mb-8 flex items-center gap-2">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#06b6d4] to-[#0053db] flex items-center justify-center text-white shadow-lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 2L2 7l10 5 10-5-10-5z" />
               <path d="M2 17l10 5 10-5" />
               <path d="M2 12l10 5 10-5" />
             </svg>
           </div>
-          <h1 className="auth-title">Welcome Back</h1>
-          <p className="auth-subtitle">Sign in to your AttendX account</p>
+          <span className="text-2xl font-bold bg-gradient-to-r from-[#4cd7f6] to-[#b4c5ff] bg-clip-text text-transparent tracking-tight">AttendX</span>
         </div>
+
+        <div className="auth-card relative">
+          {/* Subtle top highlight for glass effect */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+          
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-semibold text-[#dee3e6]">Sign in to AttendX</h2>
+            <p className="text-sm text-[#bcc9cd] mt-2">Enter your credentials to access the portal</p>
+          </div>
 
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
@@ -160,7 +206,8 @@ const Login = () => {
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default Login;
